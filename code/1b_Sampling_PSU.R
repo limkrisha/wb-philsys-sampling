@@ -9,17 +9,20 @@
   #          Step 1 Registrations from 12-31 Oct in Sample Provinces.xlsx
   # OUTPUTS: barangays_in_selected_provinces.xlsx, psu_sample_selection.xlsx
 
+# created by: Julia ??
+# last revised by: Krisha (October 21, 2021)
+
 #########################################################################   
 #               SETUP                                                   #   
 ######################################################################### 
-  
+
   ##### CLEAR ENVIRONMENT
   
   rm(list = ls()) 
   
   ##### SET WORKING DIRECTORY
   
-  setwd("C:/Users/wb436341/WBG/ID4D Initiative - 1-Team Files/1. Analytics and Good Practices/Impact Evaluations (IEs)/IE Philippines/Analysis/")
+  # setwd("C:/Users/wb436341/WBG/ID4D Initiative - 1-Team Files/1. Analytics and Good Practices/Impact Evaluations (IEs)/IE Philippines/Analysis/")
   
   ##### LOAD PACKAGES
   
@@ -39,16 +42,17 @@
 ######################################################################### 
 
   # Selected provinces
-  prov <- read_excel("data_clean/sampling/Randomly_Selected_Provinces.xlsx") 
+  # prov <- read_excel("data_clean/sampling/selected_provinces_2021-09-22.xlsx") 
+  prov <- read_excel("data_clean/selected_provinces_2021-09-22.xlsx") 
   
   # Barangays with Step 1 registration levels
-  psa <- read_excel("data_raw/sampling/Step 1 Registrations from 12-31 Oct in Sample Provinces.xlsx")
-  psa_new <- read.csv("data_raw/sampling/bgy_step1_7Nov2020.csv", stringsAsFactors = F, encoding = "UTF-8")
+  psa <- read_excel("data_raw/Step 1 Registrations from 12-31 Oct in Sample Provinces.xlsx")
+  psa_new <- read.csv("data_raw/bgy_step1_7Nov2020.csv", stringsAsFactors = F, encoding = "UTF-8")
   
   # Barangays with target level
-  target <- read_excel("data_raw/sampling/Step 1 Targets Barangay.xlsx")
+  target <- read_excel("data_raw/Step 1 Targets Barangay.xlsx")
   
-  # Master list of barangays with urban/rural status
+  # Master list of barangays with urban/rural status - can't find this file
   bgy <- read_excel("data_clean/admin/master_barangay.xlsx")
 
   
@@ -73,8 +77,8 @@
 
   # Replace strings to match master data
   psa <- psa %>% 
-    mutate(mname = str_replace(mname,  "Ò", "Ñ"),
-           bname = str_replace(bname,  "Ò", "Ñ")) %>%
+    mutate(mname = str_replace(mname,  "?", "?"),
+           bname = str_replace(bname,  "?", "?")) %>%
     mutate(bname = ifelse(bname == "Jose C. Payumo Jr.", "Jose C. Payumo, Jr.", bname),
            bname = ifelse(bname == "Juan Climaco Sr. (Magdugo)", "Juan Climaco, Sr. (Magdugo)", bname))
   
